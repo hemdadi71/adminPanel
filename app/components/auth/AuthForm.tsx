@@ -19,12 +19,15 @@ const AuthForm = () => {
   const router = useRouter()
   const [variant, setVariant] = useState<Variant>('LOGIN')
   const [isLoading, setIsLoading] = useState(false)
-
   useEffect(() => {
     if (session?.status === 'authenticated') {
-      router.push('/conversations')
+      if (session?.data?.user?.role === 'admin') {
+        router.push('/admin')
+      } else {
+        router.push('/profile')
+      }
     }
-  }, [session?.status, router])
+  }, [session?.status, router, session?.data?.user?.role])
 
   const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
@@ -48,7 +51,6 @@ const AuthForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     setIsLoading(true)
-    console.log(data)
     if (variant === 'REGISTER') {
       axios
         .post('/api/register', data)
@@ -64,7 +66,11 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            router.push('/conversations')
+            if (session?.data?.user?.role === 'admin') {
+              router.push('/admin')
+            } else {
+              router.push('/profile')
+            }
           }
         })
         .catch(() => toast.error('Something went wrong!'))
@@ -77,12 +83,18 @@ const AuthForm = () => {
         redirect: false,
       })
         .then(callback => {
+          console.log(callback)
           if (callback?.error) {
             toast.error('Invalid credentials!')
           }
 
           if (callback?.ok) {
-            router.push('/conversations')
+            console.log(session?.data?.user?.role)
+            if (session?.data?.user?.role === 'admin') {
+              router.push('/admin')
+            } else {
+              router.push('/profile')
+            }
           }
         })
         .finally(() => setIsLoading(false))

@@ -20,6 +20,7 @@ export async function POST(request: Request) {
       name,
       email,
       hashedPassword,
+      role: 'user',
     })
 
     return NextResponse.json(newUser)

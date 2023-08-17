@@ -1,9 +1,9 @@
 'use client'
 import { signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
 import React from 'react'
+import Avatar from '../components/Avatar'
 
-const Conversations = () => {
+const Profile = () => {
   const session = useSession()
   const { data } = session
   console.log(data?.user)
@@ -14,12 +14,10 @@ const Conversations = () => {
       </button>
       <div>
         <p>{data?.user?.name}</p>
-        <div className="relative w-10 h-10">
-          <Image fill src={data?.user?.image} alt='image' />
-        </div>
+        <Avatar user={data?.user} />
       </div>
     </>
   )
 }
 
-export default Conversations
+export default Profile
