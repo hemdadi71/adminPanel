@@ -3,7 +3,7 @@ import React from 'react'
 const ManageUsers = () => {
   return (
     <>
-      <div>ManageUsers</div>
+      <div className='bg-blue-200 w-full h-full'>ManageUsers</div>
     </>
   )
 }

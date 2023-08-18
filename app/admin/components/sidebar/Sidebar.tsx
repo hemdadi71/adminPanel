@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <>
       {!isLoading && (
-        <aside className="bg-[#060606] w-[20%] h-full flex flex-col gap-3 items-center py-4">
+        <aside className="bg-[#060606] w-[25%] h-full flex flex-col gap-3 items-center py-4">
           <div className="flex flex-col items-center gap-3 text-xl font-semibold w-full">
             <Avatar user={data} className="w-32 h-32" />
             <p className="text-gray-100">{data?.name}</p>

@@ -71,6 +71,7 @@ const AuthForm = () => {
             } else {
               router.push('/profile')
             }
+            toast.success(`Wellcome 👋`)
           }
         })
         .catch(() => toast.error('Something went wrong!'))
@@ -89,12 +90,12 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            console.log(session?.data?.user?.role)
             if (session?.data?.user?.role === 'admin') {
               router.push('/admin')
             } else {
               router.push('/profile')
             }
+            toast.success(`Wellcome 👋`)
           }
         })
         .finally(() => setIsLoading(false))

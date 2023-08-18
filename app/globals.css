@@ -7,3 +7,14 @@ body,
 :root {
   height: 100%;
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border-width: 1px !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-width: 2.7px !important;
+  border-color: black !important;
+}

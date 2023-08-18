@@ -12,6 +12,7 @@ interface InputProps {
   disabled?: boolean
   pattern: RegExp
   text: string
+  defaultValue?:string
 }
 
 const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
   disabled,
   pattern,
   text,
+  defaultValue,
 }) => {
   return (
     <>
@@ -36,6 +38,7 @@ const Input: React.FC<InputProps> = ({
         <div className="mt-2">
           <input
             type={type}
+            defaultValue={defaultValue}
             id={id}
             autoComplete={id}
             disabled={disabled}
