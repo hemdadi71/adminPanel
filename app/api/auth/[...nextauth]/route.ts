@@ -62,6 +62,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role
+        token.id = user.id
         token.subscribed = user.subscribed
       }
       return token
@@ -69,6 +70,7 @@ export const authOptions: AuthOptions = {
     session({ session, token }) {
       if (token && session.user) {
         session.user.role = token.role
+        session.user.id = token.id
         session.user.subscribed = token.subscribed
       }
       return session

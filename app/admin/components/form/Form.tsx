@@ -14,7 +14,6 @@ import { toast } from 'react-hot-toast'
 
 const Form = () => {
   const { data, isLoading } = useQuery('getCurrentUser', getCurrentUser)
-  //   console.log(data)
   const {
     register,
     handleSubmit,

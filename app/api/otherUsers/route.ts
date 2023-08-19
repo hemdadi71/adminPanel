@@ -8,14 +8,15 @@ export async function GET(request: Request) {
   try {
     await dbConnect()
     const session = await getSession()
-    const currentUser = await User.findById(session?.user?.id)
-    if (!currentUser) {
+    const users = await User.find({})
+    const otherUsers = users.filter(item => item.id !== session?.user?.id)
+    if (!otherUsers.length) {
       return new NextResponse('No users found', {
         status: 404,
       })
     }
 
-    return new NextResponse(JSON.stringify(currentUser), {
+    return new NextResponse(JSON.stringify(otherUsers), {
       status: 200,
     })
   } catch (error) {

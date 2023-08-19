@@ -8,7 +8,7 @@ export async function PUT(request: Request) {
     const body = await request.json()
     const { id, email, name, password, image, role } = body
 
-    if (!id || !email || !name || !password || !image || !role) {
+    if (!id || !email || !name || !password || !role) {
       return new NextResponse('Missing info', { status: 400 })
     }
 
