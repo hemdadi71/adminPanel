@@ -1,4 +1,5 @@
 'use client'
+import clsx from 'clsx'
 import Image from 'next/image'
 import React from 'react'
 import { BiEdit } from 'react-icons/bi'
@@ -8,6 +9,7 @@ interface UserCardProps {
     _id: string
     name: string
     email: string
+    role: string
     password: string
     image?: string
     hasedPassword: string
@@ -23,7 +25,7 @@ const UserCard: React.FC<UserCardProps> = ({
   onRemoveModalOpen,
   onEditModalOpen,
 }) => {
-  const { image, name, email, password } = item
+  const { image, name, email, password, role } = item
   return (
     <>
       <div className="bg-white rounded-xl flex gap-5 cursor-pointer py-3 px-5 border text-gray-900 hover:bg-purple-100 hover:scale-[1.02] transition-all ease-in-out duration-200">
@@ -31,7 +33,7 @@ const UserCard: React.FC<UserCardProps> = ({
           <Image
             src={image || '/images/placeholder.jpg'}
             fill
-            className="rounded-full border border-white"
+            className="rounded-full border border-white object-cover"
             alt="image"
           />
         </div>
@@ -45,6 +47,15 @@ const UserCard: React.FC<UserCardProps> = ({
             </p>
             <p>
               Password: <span className="font-semibold">{password}</span>
+            </p>
+          </div>
+          <div>
+            <p
+              className={clsx(
+                `font-semibold`,
+                role === 'admin' ? 'text-green-500' : 'text-red-500'
+              )}>
+              {role}
             </p>
           </div>
           <div className="flex flex-col justify-between ">

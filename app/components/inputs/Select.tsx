@@ -9,7 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
 interface SelectProps {
-  defaultValue: string
+  defaultValue?: string
   id: string
   register: UseFormRegister<FieldValues>
 }
@@ -52,7 +52,7 @@ export const SelectInput: React.FC<SelectProps> = ({
             background: 'white',
             height: '37px',
           }}
-          {...register(id)}
+          {...register(id, { required: true })}
           value={role}
           id={id}
           onChange={handleChange}

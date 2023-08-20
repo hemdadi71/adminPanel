@@ -2,6 +2,7 @@
 import Button from '@/app/components/Button'
 import Modal from '@/app/components/Modal'
 import React, { useState } from 'react'
+import AdminAddUser from '../adminAddUser/AdminAddUser'
 
 const AddUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,7 +17,7 @@ const AddUser = () => {
         </div>
       </div>
       <Modal onClose={() => setIsModalOpen(false)} isOpen={isModalOpen}>
-        Add user modal
+        <AdminAddUser setIsModalOpen={setIsModalOpen} />
       </Modal>
     </>
   )

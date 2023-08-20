@@ -35,7 +35,7 @@ const Form = () => {
   }
   const updateData = async (UpdatedData: FieldValues) => {
     try {
-      const { data } = await axios.put('/api/setting', UpdatedData)
+      const { data } = await axios.post('/api/setting', UpdatedData)
       return data
     } catch (error) {
       console.log(data)
@@ -51,6 +51,7 @@ const Form = () => {
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {
     Data.id = data._id
+    console.log(Data)
     mutate(Data)
   }
   return (
@@ -79,7 +80,7 @@ const Form = () => {
             <div className="flex gap-5">
               <Input
                 id="name"
-                lable="Name:"
+                lable="Full name:"
                 defaultValue={data?.name}
                 register={register}
                 errors={errors}

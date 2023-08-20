@@ -6,14 +6,14 @@ export async function POST(request: Request) {
   await dbConnect()
   try {
     const body = await request.json()
-    const { id, email, name, password, image, role } = body
+    const { email, name, password, image, role } = body
 
-    if (!id || !email || !name || !password || !role) {
+    if (!email || !name || !password || !role) {
       return new NextResponse('Missing info', { status: 400 })
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const updateFields = {
+    const newUser = {
       name,
       email,
       password,
@@ -22,13 +22,7 @@ export async function POST(request: Request) {
       hashedPassword,
     }
 
-    const updatedUser = await User.findByIdAndUpdate(id, updateFields, {
-      new: true,
-    })
-
-    if (!updatedUser) {
-      return new NextResponse('User not found', { status: 404 })
-    }
+    const updatedUser = await User.create(newUser)
 
     return NextResponse.json(updatedUser)
   } catch (error) {

@@ -15,13 +15,13 @@ interface user {
   password: string
   image?: string
   hasedPassword: string
+  role: string
   createdAt: string
   updatedAt: string
 }
 
 const UsersBox = () => {
   const { data, isLoading } = useQuery('getOtherUsers', getOtherUsers)
-  console.log(data)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [id, setId] = useState('')
@@ -35,7 +35,7 @@ const UsersBox = () => {
   }
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 p-5 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 p-5 gap-5 lg:max-h-[400px] overflow-auto">
         {!isLoading && data
           ? data.map((item: user) => (
               <UserCard
@@ -48,10 +48,10 @@ const UsersBox = () => {
           : []}
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <RemoveUser id={id} />
+        <RemoveUser setIsModalOpen={setIsModalOpen} id={id} />
       </Modal>
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <EditUser id={id} />
+        <EditUser setIsEditModalOpen={setIsEditModalOpen} id={id} />
       </Modal>
     </>
   )

@@ -22,13 +22,9 @@ export async function POST(request: Request) {
       password,
       role: 'user',
     })
-
     return NextResponse.json(newUser)
   } catch (error) {
     console.log(error, 'REGISTRATION_ERROR')
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
-
-
-
