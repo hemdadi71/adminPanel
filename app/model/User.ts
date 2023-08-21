@@ -29,6 +29,10 @@ const userSchema = new Schema(
       require: true,
       default: 'user',
     },
+    key: {
+      type: String,
+      require: false,
+    },
     image: {
       type: String,
     },

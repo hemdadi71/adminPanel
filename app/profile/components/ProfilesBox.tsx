@@ -3,10 +3,11 @@
 import { getOtherUsers } from '@/app/actions/getOtherUsers'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
-import UserCard from '../userCard/UserCard'
 import Modal from '@/app/components/Modal'
-import RemoveUser from '../removeUser/RemoveUser'
-import EditUser from '../editUser/EditUser'
+import UserCard from './userCard/UserCard'
+import RemoveUser from './RemoveProfile'
+import EditUser from './EditProfile'
+import { getProfiles } from '@/app/actions/getProfiles'
 
 interface user {
   _id: string
@@ -20,8 +21,9 @@ interface user {
   updatedAt: string
 }
 
-const UsersBox = () => {
-  const { data, isLoading } = useQuery('getOtherUsers', getOtherUsers)
+const ProfilesBox = () => {
+  const { data, isLoading } = useQuery('getProfiles', getProfiles)
+  console.log(data)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [id, setId] = useState('')
@@ -35,7 +37,7 @@ const UsersBox = () => {
   }
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 p-5 gap-5 max-h-[400px] overflow-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 p-5 gap-5 lg:max-h-[400px] overflow-auto">
         {!isLoading && data
           ? data.map((item: user) => (
               <UserCard
@@ -57,4 +59,4 @@ const UsersBox = () => {
   )
 }
 
-export default UsersBox
+export default ProfilesBox

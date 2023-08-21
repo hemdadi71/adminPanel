@@ -8,14 +8,15 @@ import Image from 'next/image'
 import React from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { CldUploadButton } from 'next-cloudinary'
+import getCurrentUser from '@/app/actions/getCurrentUser'
 
-interface AdminAddUserProps {
+interface AddProfileFormProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
+const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
   const {
     register,
     handleSubmit,
@@ -28,7 +29,6 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
       name: '',
       email: '',
       password: '',
-      role: 'user',
     },
   })
   const image = watch('image')
@@ -37,10 +37,10 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
   }
   const updateData = async (Data: FieldValues) => {
     try {
-      const { data } = await axios.post('/api/addUser', Data)
+      const { data } = await axios.post('/api/addProfile', Data)
       return data
-    } catch (error: any) {
-      throw error
+    } catch (error) {
+      console.log(error)
     }
   }
   const queryClient = useQueryClient()
@@ -48,11 +48,11 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
     mutationFn: updateData,
     onSuccess: () => {
       toast.success('Account Update successfully')
-      queryClient.invalidateQueries('getOtherUsers')
+      queryClient.invalidateQueries('getProfiles')
       setIsModalOpen(false)
     },
-    onError: (error: any) => {
-      toast.error(error.response.data)
+    onError: () => {
+      toast.error('Somthing went wrong!!!')
     },
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {
@@ -113,9 +113,9 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
               pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
               text="Enter strong password"
             />
-            <div className="w-1/2">
+            {/* <div className="w-1/2">
               <SelectInput defaultValue="user" id="role" register={register} />
-            </div>
+            </div> */}
           </div>
           <Button type="submit">Add</Button>
         </form>
@@ -124,4 +124,4 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
   )
 }
 
-export default AdminAddUser
+export default AddProfileForm

@@ -3,15 +3,14 @@ import { NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 import User from '@/app/model/User'
 import getSession from '@/app/actions/getSession'
-
 export async function POST(request: Request) {
   await dbConnect()
   try {
     const session = await getSession()
     const body = await request.json()
-    const { email, name, password, image, role } = body
+    const { email, name, password, image } = body
 
-    if (!email || !name || !password || !role) {
+    if (!email || !name || !password) {
       return new NextResponse('Missing info', { status: 400 })
     }
     const users = await User.find({})
@@ -30,7 +29,8 @@ export async function POST(request: Request) {
       email,
       password,
       image,
-      role,
+      role: 'user',
+      key: session?.user?.id,
       hashedPassword,
     }
 

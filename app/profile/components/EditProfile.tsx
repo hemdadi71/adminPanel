@@ -34,8 +34,8 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
       name: data?.name,
       email: data?.email,
       password: data?.password,
-      role: data?.role,
       image: data?.image,
+      role: 'user',
     },
   })
   const image = watch('image')
@@ -47,7 +47,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
       const { data } = await axios.post('/api/setting', UpdatedData)
       return data
     } catch (error) {
-      throw error
+      console.log(data)
     }
   }
   const queryClient = useQueryClient()
@@ -56,11 +56,8 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
     onSuccess: () => {
       setIsEditModalOpen(false)
       toast.success('Account Update successfully')
-      queryClient.invalidateQueries('getOtherUsers')
+      queryClient.invalidateQueries('getProfiles')
       router.refresh()
-    },
-    onError: (error: any) => {
-      toast.error(error.response.data)
     },
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {
@@ -124,13 +121,6 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
                 text="Enter strong password"
               />
-              <div className="w-1/2">
-                <SelectInput
-                  id="role"
-                  register={register}
-                  defaultValue={data?.role}
-                />
-              </div>
             </div>
             <Button type="submit">Save</Button>
           </form>

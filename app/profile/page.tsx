@@ -1,23 +1,23 @@
-'use client'
-import { signOut, useSession } from 'next-auth/react'
-import React from 'react'
-import Avatar from '../components/Avatar'
 
-const Profile = () => {
-  const session = useSession()
-  const { data } = session
-  console.log(data?.user)
+
+
+import React from 'react'
+
+import Form from '@/app/admin/components/form/Form'
+import Header from './components/header/Header'
+
+
+const Admin = () => {
   return (
     <>
-      <button className="bg-red-500" onClick={() => signOut()}>
-        SignOut
-      </button>
-      <div>
-        <p>{data?.user?.name}</p>
-        <Avatar user={data?.user} />
+      <div className="bg-[#F2EDF3] w-full h-full">
+        <Header>
+          <p className="text-xl font-semibold text-gray-900">Account Setting</p>
+        </Header>
+        <Form />
       </div>
     </>
   )
 }
 
-export default Profile
+export default Admin
