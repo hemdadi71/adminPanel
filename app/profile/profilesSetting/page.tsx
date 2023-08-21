@@ -1,6 +1,6 @@
 'use client'
 
-import { getOtherUsers } from '@/app/actions/getOtherUsers'
+
 import React from 'react'
 import { useQuery } from 'react-query'
 import Header from '../components/header/Header'

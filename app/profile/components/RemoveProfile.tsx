@@ -1,6 +1,6 @@
 'use client'
 
-import { getUserById } from '@/app/actions/getUserById'
+
 import React from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Spinner from '@/app/components/Spinner'
@@ -8,6 +8,7 @@ import Button from '@/app/components/Button'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import RemoveUserCard from './removeUserCard/RemoveUserCard'
+import { getUserById } from '@/app/actions/getUserById'
 
 interface RemoveUserProps {
   id: string

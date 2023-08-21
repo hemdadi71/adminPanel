@@ -1,6 +1,6 @@
 'use client'
 
-import { getOtherUsers } from '@/app/actions/getOtherUsers'
+
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import Modal from '@/app/components/Modal'
