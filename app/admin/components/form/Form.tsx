@@ -38,7 +38,7 @@ const Form = () => {
       const { data } = await axios.post('/api/setting', UpdatedData)
       return data
     } catch (error) {
-      console.log(data)
+      throw error
     }
   }
   const queryClient = useQueryClient()
@@ -47,6 +47,9 @@ const Form = () => {
     onSuccess: () => {
       toast.success('Account Update successfully')
       queryClient.invalidateQueries('getCurrentUser')
+    },
+    onError: (error: any) => {
+      toast.error(error.response.data)
     },
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {
