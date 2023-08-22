@@ -3,14 +3,17 @@
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import Avatar from '@/app/components/Avatar'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { FaUserAlt } from 'react-icons/fa'
 import { MdManageAccounts } from 'react-icons/md'
 import { PiSignOutBold } from 'react-icons/pi'
 import { signOut } from 'next-auth/react'
+import Modal from '@/app/components/Modal'
+import Image from 'next/image'
 const Sidebar = () => {
   const { data, isLoading } = useQuery('getCurrentUser', getCurrentUser)
+  const [isOpenModal, setIsOpenModal] = useState(false)
   return (
     <>
       <aside className="bg-[#ffffff] lg:w-[25%] items-center lg:py-4 py-2">
@@ -44,6 +47,18 @@ const Sidebar = () => {
           </li>
         </ul>
       </aside>
+      <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+        <div className="flex justify-center">
+          <div className="w-[300px] h-[300px] relative">
+            <Image
+              src={data?.image}
+              alt="image"
+              fill
+              className="object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      </Modal>
     </>
   )
 }

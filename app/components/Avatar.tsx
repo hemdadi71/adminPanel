@@ -7,9 +7,10 @@ import Image from 'next/image'
 interface AvatarProps {
   user?: User
   className?: string
+  onClick?: () => void
 }
 
-const Avatar: React.FC<AvatarProps> = ({ user, className }) => {
+const Avatar: React.FC<AvatarProps> = ({ user, className, onClick }) => {
   return (
     <>
       <div className="relative">
@@ -19,6 +20,7 @@ const Avatar: React.FC<AvatarProps> = ({ user, className }) => {
             className
           )}>
           <Image
+            onClick={onClick}
             priority={false}
             alt="avatar"
             className="object-cover"
