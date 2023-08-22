@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       (item: any) =>
         item.email === session?.user?.email || item.name === session?.user?.name
     )
-    if (existUser) {
+    if (Object.values(existUser).length === 0) {
       return new NextResponse('User with this data alreay exist', {
         status: 400,
       })
