@@ -63,7 +63,7 @@ const Form = () => {
         {!isLoading && (
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center w-full gap-3 p-4">
+            className="flex flex-col items-center w-full gap-3 p-4 h-full">
             <div className="flex flex-col justify-center items-center gap-3">
               <div className="relative flex flex-col items-center justify-center w-[200px] h-[200px]">
                 <Image
@@ -80,7 +80,7 @@ const Form = () => {
                 <Button type="button">Change</Button>
               </CldUploadButton>
             </div>
-            <div className="flex gap-5">
+            <div className="flex md:flex-row flex-col justify-center gap-5 w-full">
               <Input
                 id="name"
                 lable="Full name:"
@@ -100,7 +100,7 @@ const Form = () => {
                 text="Example@gmail.com"
               />
             </div>
-            <div className="flex gap-5">
+            <div className="flex justify-center md:flex-row flex-col gap-5 w-full">
               <Input
                 id="password"
                 lable="Password:"
@@ -110,7 +110,7 @@ const Form = () => {
                 pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
                 text="Enter strong password"
               />
-              <div className="w-1/2">
+              <div className="md:w-[21%] w-full">
                 <SelectInput
                   id="role"
                   register={register}

@@ -18,7 +18,7 @@ const RemoveUserCard: React.FC<RemoveUserCardProps> = ({ data }) => {
   const { name, image, email, password } = data
   return (
     <>
-      <div className="bg-red-100 rounded-xl flex gap-5 py-3 px-5 border text-gray-900">
+      <div className="bg-red-100 rounded-xl flex md:flex-row flex-col items-center gap-5 py-3 px-5 border text-gray-900">
         <div className="relative h-[80px] w-[80px]">
           <Image
             src={image || '/images/placeholder.jpg'}

@@ -83,7 +83,7 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
               </Button>
             </CldUploadButton>
           </div>
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5 w-full">
             <Input
               id="name"
               lable="Full name:"
@@ -103,7 +103,7 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
               text="Example@gmail.com"
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5 w-full">
             <Input
               id="password"
               lable="Password:"
@@ -113,7 +113,7 @@ const AdminAddUser: React.FC<AdminAddUserProps> = ({ setIsModalOpen }) => {
               pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
               text="Enter strong password"
             />
-            <div className="w-1/2">
+            <div className="md:w-1/2 w-full">
               <SelectInput defaultValue="user" id="role" register={register} />
             </div>
           </div>

@@ -83,7 +83,7 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
               </Button>
             </CldUploadButton>
           </div>
-          <div className="flex gap-5">
+          <div className="flex md:flex-row flex-col w-full gap-5">
             <Input
               id="name"
               lable="Full name:"
@@ -103,7 +103,7 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
               text="Example@gmail.com"
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex  md:flex-row flex-col w-full gap-5">
             <Input
               id="password"
               lable="Password:"
@@ -113,9 +113,6 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
               pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
               text="Enter strong password"
             />
-            {/* <div className="w-1/2">
-              <SelectInput defaultValue="user" id="role" register={register} />
-            </div> */}
           </div>
           <Button type="submit">Add</Button>
         </form>

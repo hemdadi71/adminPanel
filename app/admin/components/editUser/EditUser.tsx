@@ -91,7 +91,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 <Button type="button">Change</Button>
               </CldUploadButton>
             </div>
-            <div className="flex gap-5">
+            <div className="flex flex-col md:flex-row gap-5 w-full">
               <Input
                 id="name"
                 lable="Full name:"
@@ -113,7 +113,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 text="Example@gmail.com"
               />
             </div>
-            <div className="flex gap-5">
+            <div className="flex flex-col md:flex-row gap-5 w-full">
               <Input
                 id="password"
                 lable="Password:"
@@ -124,7 +124,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 pattern={/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/}
                 text="Enter strong password"
               />
-              <div className="w-1/2">
+              <div className="md:w-1/2 w-full">
                 <SelectInput
                   id="role"
                   register={register}

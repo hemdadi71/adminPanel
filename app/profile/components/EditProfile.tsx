@@ -88,7 +88,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 <Button type="button">Change</Button>
               </CldUploadButton>
             </div>
-            <div className="flex gap-5">
+            <div className="flex md:flex-row flex-col gap-5 w-full">
               <Input
                 id="name"
                 lable="Full name:"
@@ -110,7 +110,7 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
                 text="Example@gmail.com"
               />
             </div>
-            <div className="flex gap-5">
+            <div className="flex md:flex-row flex-col gap-5 w-full">
               <Input
                 id="password"
                 lable="Password:"

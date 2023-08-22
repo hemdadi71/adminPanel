@@ -6,7 +6,7 @@ import Sidebar from './components/sidebar/Sidebar'
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="flex h-full">
+      <div className="flex lg:flex-row flex-col w-full h-full">
         <Sidebar />
 
         {children}

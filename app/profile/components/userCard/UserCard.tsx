@@ -28,7 +28,7 @@ const UserCard: React.FC<UserCardProps> = ({
   const { image, name, email, password, role } = item
   return (
     <>
-      <div className="bg-white rounded-xl flex gap-5 cursor-pointer py-3 px-5 border text-gray-900 hover:bg-purple-100 hover:scale-[1.02] transition-all ease-in-out duration-200">
+      <div className="bg-white rounded-xl flex sm:flex-row flex-col gap-5 cursor-pointer py-3 px-5 border text-gray-900 hover:bg-purple-100 hover:scale-[1.02] transition-all ease-in-out duration-200">
         <div className="relative h-[80px] w-[80px]">
           <Image
             src={image || '/images/placeholder.jpg'}
@@ -37,7 +37,7 @@ const UserCard: React.FC<UserCardProps> = ({
             alt="image"
           />
         </div>
-        <div className="flex justify-between flex-1">
+        <div className="flex justify-between sm:gap-0 gap-5 flex-1">
           <div className="flex flex-col gap-1">
             <p>
               Name: <span className="font-semibold">{name}</span>
