@@ -3,8 +3,9 @@
 
 import React from 'react'
 
-import Form from '@/app/admin/components/form/Form'
+
 import Header from './components/header/Header'
+import Form from './components/form/Form'
 
 
 const Admin = () => {
