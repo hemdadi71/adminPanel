@@ -11,9 +11,12 @@ import { PiSignOutBold } from 'react-icons/pi'
 import { signOut } from 'next-auth/react'
 import Modal from '@/app/components/Modal'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+
 const Sidebar = () => {
   const { data, isLoading } = useQuery('getCurrentUser', getCurrentUser)
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const pathname = usePathname()
   return (
     <>
       <aside className="bg-[#060606] lg:w-[25%] items-center lg:py-4 py-2">
@@ -26,11 +29,13 @@ const Sidebar = () => {
           <p className="text-gray-100">{data?.name}</p>
           <div className="w-[85%] lg:my-0 my-3 bg-gray-500 rounded-full h-[1px]" />
         </div>
-        <ul className="flex lg:flex-col justify-center mt-2 flex-row-reverse gap-5">
+        <ul className="flex lg:flex-col justify-center mt-2 flex-row-reverse gap-5 px-5">
           <li>
             <Link
               href={'/admin'}
-              className="hover:bg-[#8b8D93] text-gray-300 hover:text-white rounded-md py-2 px-5 flex items-center gap-3 transition-all ease-in-out duration-300">
+              className={`hover:bg-[#8b8D93] ${
+                pathname === '/admin' && 'bg-[#8b8D93] text-white'
+              } text-gray-300 hover:text-white rounded-md py-2 px-5 flex items-center gap-3 transition-all ease-in-out duration-300`}>
               <MdManageAccounts size={28} />
               <p className="hidden sm:block">Account Setting</p>
             </Link>
@@ -38,7 +43,9 @@ const Sidebar = () => {
           <li>
             <Link
               href={'/admin/manageUser'}
-              className="hover:bg-[#8b8D93] text-gray-300 hover:text-white rounded-md py-2 px-5 flex items-center gap-5 transition-all ease-in-out duration-300">
+              className={`hover:bg-[#8b8D93] ${
+                pathname === '/admin/manageUser' && 'bg-[#8b8D93] text-white'
+              } text-gray-300 hover:text-white rounded-md py-2 px-5 flex items-center gap-5 transition-all ease-in-out duration-300`}>
               <FaUserAlt size={20} />
               <p className="hidden sm:block">Users Setting</p>
             </Link>
@@ -52,7 +59,7 @@ const Sidebar = () => {
         </ul>
       </aside>
       <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
           <div className="w-[300px] h-[300px] relative">
             <Image
               src={data?.image}

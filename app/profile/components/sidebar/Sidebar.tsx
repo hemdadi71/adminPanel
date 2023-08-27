@@ -11,9 +11,11 @@ import { PiSignOutBold } from 'react-icons/pi'
 import { signOut } from 'next-auth/react'
 import Modal from '@/app/components/Modal'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 const Sidebar = () => {
   const { data, isLoading } = useQuery('getCurrentUser', getCurrentUser)
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const pathname = usePathname()
   return (
     <>
       <aside className="bg-[#ffffff] lg:w-[25%] items-center lg:py-4 py-2">
@@ -22,11 +24,13 @@ const Sidebar = () => {
           <p className="text-gray-900">{data?.name}</p>
           <div className="w-[85%] lg:my-0 my-3 bg-gray-300 rounded-full h-[1px]" />
         </div>
-        <ul className="flex lg:flex-col justify-center mt-2 flex-row-reverse gap-5">
-          <li>
+        <ul className="flex lg:flex-col justify-center mt-2 flex-row-reverse gap-5 px-5">
+          <li className="px-1">
             <Link
               href={'/profile'}
-              className="hover:bg-[#a05aff] font-semibold text-gray-900 hover:text-white rounded-md py-2 px-5 flex items-center gap-3 transition-all ease-in-out duration-300">
+              className={`hover:bg-[#a05aff] ${
+                pathname === '/profile' && 'bg-[#a05aff] text-white'
+              } font-semibold text-gray-900 hover:text-white rounded-md py-2 px-5 flex items-center gap-3 transition-all ease-in-out duration-300`}>
               <MdManageAccounts size={28} />
               <p className="hidden sm:block">Account Setting</p>
             </Link>
@@ -34,7 +38,10 @@ const Sidebar = () => {
           <li>
             <Link
               href={'/profile/profilesSetting'}
-              className="hover:bg-[#a05aff] text-gray-900 font-semibold hover:text-white rounded-md py-2 px-5 flex items-center gap-5 transition-all ease-in-out duration-300">
+              className={`hover:bg-[#a05aff] ${
+                pathname === '/profile/profilesSetting' &&
+                'bg-[#a05aff] text-white'
+              } text-gray-900 font-semibold hover:text-white rounded-md py-2 px-5 flex items-center gap-5 transition-all ease-in-out duration-300`}>
               <FaUserAlt size={20} />
               <p className="hidden sm:block">Profiles Setting</p>
             </Link>
