@@ -13,13 +13,20 @@ export async function POST(request: Request) {
     if (!email || !name || !password) {
       return new NextResponse('Missing info', { status: 400 })
     }
-    const users = await User.find({})
-    const existUser = users.find(
-      (item: any) =>
-        item.email === session?.user?.email || item.name === session?.user?.name
-    )
-    if (Object.values(existUser).length === 0) {
-      return new NextResponse('User with this data is alreay exist', {
+    // Check if the email already exists in the database
+    const existingUserByEmail = await User.findOne({ email })
+
+    if (existingUserByEmail) {
+      return new NextResponse('User with this email already exists', {
+        status: 400,
+      })
+    }
+
+    // Check if the name already exists in the database
+    const existingUserByName = await User.findOne({ name })
+
+    if (existingUserByName) {
+      return new NextResponse('User with this name already exists', {
         status: 400,
       })
     }

@@ -47,7 +47,9 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
       const { data } = await axios.post('/api/setting', UpdatedData)
       return data
     } catch (error) {
-      console.log(data)
+      console.log(error)
+
+      throw error
     }
   }
   const queryClient = useQueryClient()
@@ -58,6 +60,10 @@ const EditUser: React.FC<EditUserProps> = ({ id, setIsEditModalOpen }) => {
       toast.success('Account Update successfully')
       queryClient.invalidateQueries('getProfiles')
       router.refresh()
+    },
+    onError: (error: any) => {
+      // if(error.response.data==='internal eroror')
+      toast.error(error.response.data)
     },
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {

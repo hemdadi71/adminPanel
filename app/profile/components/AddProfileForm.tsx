@@ -40,7 +40,7 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
       const { data } = await axios.post('/api/addProfile', Data)
       return data
     } catch (error) {
-      console.log(error)
+      throw error
     }
   }
   const queryClient = useQueryClient()
@@ -51,8 +51,8 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
       queryClient.invalidateQueries('getProfiles')
       setIsModalOpen(false)
     },
-    onError: () => {
-      toast.error('Somthing went wrong!!!')
+    onError: (error: any) => {
+      toast.error(error.response.data)
     },
   })
   const onSubmit: SubmitHandler<FieldValues> = Data => {

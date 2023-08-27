@@ -13,15 +13,31 @@ export async function POST(request: Request) {
     if (!id || !email || !name || !password || !role) {
       return new NextResponse('Missing info', { status: 400 })
     }
-    const users = await User.find({})
-    const existUser = users.find(
-      (item: any) =>
-        item.email === session?.user?.email || item.name === session?.user?.name
-    )
-    if (Object.values(existUser).length === 0) {
-      return new NextResponse('User with this data alreay exist', {
-        status: 400,
-      })
+    const userToUpdate = await User.findById(id)
+
+    if (!userToUpdate) {
+      return new NextResponse('User not found', { status: 404 })
+    }
+
+    // Check if the email is being updated and it's different from the current email
+    if (email !== userToUpdate.email) {
+      const existingUser = await User.findOne({ email })
+
+      if (existingUser) {
+        return new NextResponse('User with this email already exists', {
+          status: 400,
+        })
+      }
+    }
+    // Check if the name is being updated and it's different from the current name
+    if (name !== userToUpdate.name) {
+      const existingUserByName = await User.findOne({ name })
+
+      if (existingUserByName) {
+        return new NextResponse('User with this name already exists', {
+          status: 400,
+        })
+      }
     }
     const hashedPassword = await bcrypt.hash(password, 12)
     const updateFields = {
