@@ -80,10 +80,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                     absolute 
                     right-0 
                     top-0 
-                    hidden 
+                     
                     pr-4 
                     pt-4 
-                    sm:block
+                    
                     z-10
                   "
                 >
@@ -102,7 +102,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                     onClick={onClose}
                   >
                     <span className="sr-only">Close</span>
-                    <IoClose className="h-6 w-6" aria-hidden="true" />
+                    <IoClose className="h-6 w-6" />
                   </button>
                 </div>
                 {children}

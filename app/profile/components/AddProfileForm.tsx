@@ -103,7 +103,7 @@ const AddProfileForm: React.FC<AddProfileFormProps> = ({ setIsModalOpen }) => {
               text="Example@gmail.com"
             />
           </div>
-          <div className="flex  md:flex-row flex-col w-full gap-5">
+          <div className="flex  md:flex-row flex-col w-full gap-5 justify-center">
             <Input
               id="password"
               lable="Password:"
